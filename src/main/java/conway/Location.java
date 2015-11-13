@@ -30,7 +30,8 @@ public class Location {
 
     public Set<Location> neighbours() {
         return rangeClosed(-1, 1)
-                .mapToObj(dx -> rangeClosed(-1, 1).mapToObj(dy -> loc(x + dx, y + dy)))
+                .mapToObj(dx -> rangeClosed(-1, 1)
+                        .mapToObj(dy -> loc(x + dx, y + dy)))
                 .flatMap(identity())
                 .filter(loc -> !loc.equals(this))
                 .collect(toSet());
